@@ -6,10 +6,9 @@ NASNet refers to Neural Architecture Search Network, a family of model that were
 designed automatically by learning the model architectures directly on the dataset
 of interest.
 
-Here we consider NASNet-A, the highest performance model that was found for the 
-CIFAR-10 dataset, and then extended to ImageNet 2012 dataset, obtaining state of 
-the art performance on CIFAR-10 and ImageNet 2012. Only the NASNet-A models, and 
-their respective weights, which are suited for ImageNet 2012 are provided.
+It includes the two motifs of Normal Cell and Reduction Cell where the conv blocks 
+are constructed by Controller Model Architecture. It combines both the RNN and the 
+CNN for a better classification and prediction on the images given by users. 
  
 Make the the necessary changes to adapt to the environment of TensorFlow 2.3, Keras 
 2.4.3, CUDA Toolkit 11.0, cuDNN 8.0.1 and CUDA 450.57. In addition, write the new 
