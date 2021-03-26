@@ -7,7 +7,7 @@
 NASNet-A models for Keras.
 
 NASNet refers to Neural Architecture Search Network, a family of models that were 
-designed automatically by learning the model architecturesdirectly on the dataset
+designed automatically by learning the model architectures directly on the dataset
 of interest.
 
 Here we consider NASNet-A, the highest performance model that was found for the 
@@ -25,7 +25,7 @@ The below table describes the performance on ImageNet 2012:
 
 Make the the necessary changes to adapt to the environment of TensorFlow 2.3, Keras 
 2.4.3, CUDA Toolkit 11.0, cuDNN 8.0.1 and CUDA 450.57. In addition, write the new 
-ines of code to replace the deprecated code. 
+lines of code to replace the deprecated code. 
 
 Weights obtained from the official TensorFlow repository found at
 https://github.com/tensorflow/models/tree/master/research/slim/nets/nasnet
@@ -124,7 +124,7 @@ def _separable_conv_block(ip, filters, kernel_size=(3,3), strides=(1,1), block_i
             conv_pad = 'valid'
         else:
             conv_pad = 'same'
-        x = SeparableConv2D(filters, kernel_size,strides=strides, name='separable_conv_1_%s' % block_id, 
+        x = SeparableConv2D(filters, kernel_size, strides=strides, name='separable_conv_1_%s' % block_id, 
                             padding=conv_pad, use_bias=False, kernel_initializer='he_normal')(x)
         x = BatchNormalization(axis=channel_dim, momentum=0.9997, epsilon=1e-3, 
                                name='separable_conv_1_bn_%s' % (block_id))(x)
@@ -189,7 +189,7 @@ def _adjust_block(p, ip, filters, block_id=None):
 
 
 def _normal_a_cell(ip, p, filters, block_id=None):
-    # Adds a Normal cell for NASNet-A (Fig. 4 in the paper).
+    # Adds a Normal Cell for NASNet-A (Fig. 4 in the paper).
     """
     # Arguments
         ip: Input tensor `x`
@@ -304,7 +304,7 @@ def NASNet(input_shape=None, penultimate_filters=4032, num_blocks=6, stem_block_
             - If `filter_multiplier` > 1.0, proportionally increases filters # in each layer
             - If `filter_multiplier` = 1, default filters # from the paper used at each layer.
         include_top: whether to include the FC layer at the top of the network.
-        weights: `None` (random initialization)or 'imagenet'. 
+        weights: `None` (random initialization) or 'imagenet'. 
         input_tensor: optional Keras tensor (output of `layers.Input()`)
             to use as image input for the model.
         pooling: Optional mode for feature extraction when `include_top` is `False`.
