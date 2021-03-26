@@ -10,9 +10,9 @@ It includes the two motifs of Normal Cell and Reduction Cell where the conv bloc
 are constructed by Controller Model Architecture. It combines both the RNN and the 
 CNN for a better classification and prediction on the images given by users. 
  
-Make the the necessary changes to adapt to the environment of TensorFlow 2.3, Keras 
+Make the necessary changes to adapt to the environment of TensorFlow 2.3, Keras 
 2.4.3, CUDA Toolkit 11.0, cuDNN 8.0.1 and CUDA 450.57. In addition, write the new 
-ines of code to replace the deprecated code. 
+lines of code to replace the deprecated code. 
 
 Weights obtained from the official TensorFlow repository found at
 https://github.com/tensorflow/models/tree/master/research/slim/nets/nasnet
