@@ -24,8 +24,8 @@ The below table describes the performance on ImageNet 2012:
 --------------------------------------------------------------------------------
 
 Make the the necessary changes to adapt to the environment of TensorFlow 2.3, Keras 
-2.4.3, CUDA Toolkit 11.0, cuDNN 8.0.1 and CUDA 450.57. In addition, write the new 
-ines of code to replace the deprecated code. 
+2.4.3, CUDA Toolkit 11.0, cuDNN 8.0.1 and CUDA 450.102. In addition, write the new 
+lines of code to replace the deprecated code. 
 
 Weights obtained from the official TensorFlow repository found at
 https://github.com/tensorflow/models/tree/master/research/slim/nets/nasnet
