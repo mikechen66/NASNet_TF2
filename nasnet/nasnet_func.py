@@ -124,12 +124,12 @@ def _separable_conv_block(ip, filters, kernel_size=(3,3), strides=(1,1), block_i
             conv_pad = 'valid'
         else:
             conv_pad = 'same'
-        x = SeparableConv2D(filters, kernel_size,strides=strides, name='separable_conv_1_%s' % block_id, 
+        x = SeparableConv2D(filters, kernel_size, strides=strides, name='separable_conv_1_%s' % block_id, 
                             padding=conv_pad, use_bias=False, kernel_initializer='he_normal')(x)
         x = BatchNormalization(axis=channel_dim, momentum=0.9997, epsilon=1e-3, 
                                name='separable_conv_1_bn_%s' % (block_id))(x)
         x = Activation('relu')(x)
-        x = SeparableConv2D(filters, kernel_size, name='separable_conv_2_%s' % block_id,  padding='same', 
+        x = SeparableConv2D(filters, kernel_size, name='separable_conv_2_%s' % block_id, padding='same', 
                             use_bias=False, kernel_initializer='he_normal')(x)
         x = BatchNormalization(axis=channel_dim, momentum=0.9997, epsilon=1e-3, 
                                name='separable_conv_2_bn_%s' % (block_id))(x)
@@ -206,7 +206,7 @@ def _normal_a_cell(ip, p, filters, block_id=None):
         h = Activation('relu')(ip)
         h = Conv2D(filters, (1,1), strides=(1,1), padding='same', name='normal_conv_1_%s' % block_id, 
                    use_bias=False, kernel_initializer='he_normal')(h)
-        h = BatchNormalization(axis=channel_dim, momentum=0.9997, epsilon=1e-3,name='normal_bn_1_%s' % block_id)(h)
+        h = BatchNormalization(axis=channel_dim, momentum=0.9997, epsilon=1e-3, name='normal_bn_1_%s' % block_id)(h)
         with K.name_scope('block_1'):
             x1_1 = _separable_conv_block(h, filters,kernel_size=(5, 5), block_id='normal_left1_%s' % block_id)
             x1_2 = _separable_conv_block(p, filters, block_id='normal_right1_%s' % block_id)
@@ -236,7 +236,7 @@ def _normal_a_cell(ip, p, filters, block_id=None):
 
 
 def _reduction_a_cell(ip, p, filters, block_id=None):
-    # Adds a Reduction cell for NASNet-A (Fig. 4 in the paper).
+    # Adds a Reduction Cell for NASNet-A (Fig. 4 in the paper).
     """
     # Arguments
         ip: Input tensor `x`
@@ -277,7 +277,7 @@ def _reduction_a_cell(ip, p, filters, block_id=None):
 
         with K.name_scope('block_5'):
             x5_1 = _separable_conv_block(x1, filters, (3,3), block_id='reduction_left4_%s' % block_id)
-            x5_2 = MaxPooling2D((3,3),strides=(2,2), padding='valid', name='reduction_right5_%s' % block_id)(h3)
+            x5_2 = MaxPooling2D((3,3), strides=(2,2), padding='valid', name='reduction_right5_%s' % block_id)(h3)
             x5 = add([x5_1, x5_2], name='reduction_add4_%s' % block_id)
 
         x = concatenate([x2,x3,x4,x5], axis=channel_dim, name='reduction_concat_%s' % block_id)
@@ -303,7 +303,7 @@ def NASNet(input_shape=None, penultimate_filters=4032, num_blocks=6, stem_block_
             - If `filter_multiplier` > 1.0, proportionally increases filters # in each layer
             - If `filter_multiplier` = 1, default filters # from the paper used at each layer.
         include_top: whether to include the FC layer at the top of the network.
-        weights: `None` (random initialization)or 'imagenet'. 
+        weights: `None` (random initialization) or 'imagenet'. 
         input_tensor: optional Keras tensor (output of `layers.Input()`)
             to use as image input for the model.
         pooling: Optional mode for feature extraction when `include_top` is `False`.
