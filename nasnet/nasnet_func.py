@@ -7,7 +7,7 @@
 NASNet-A models for Keras.
 
 NASNet refers to Neural Architecture Search Network, a family of models that were 
-designed automatically by learning the model architecturesdirectly on the dataset
+designed automatically by learning the model architectures directly on the dataset
 of interest.
 
 Here we consider NASNet-A, the highest performance model that was found for the 
